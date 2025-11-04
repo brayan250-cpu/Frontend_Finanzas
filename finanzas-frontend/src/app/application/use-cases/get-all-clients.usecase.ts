@@ -1,12 +1,11 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { Client } from '../../domain/models/client';
 import { ClientRepository } from '../ports/client.repository';
-
-const CLIENT_REPOSITORY = Symbol.for('ClientRepository');
+import { CLIENT_REPOSITORY } from '../tokens';
 
 @Injectable({ providedIn: 'root' })
 export class GetAllClientsUseCase {
-  private readonly repo = inject<ClientRepository>(CLIENT_REPOSITORY as any);
+  private readonly repo = inject<ClientRepository>(CLIENT_REPOSITORY);
   loading = signal(false);
 
   async execute(): Promise<Client[]> {
@@ -15,5 +14,3 @@ export class GetAllClientsUseCase {
     finally { this.loading.set(false); }
   }
 }
-
-export { CLIENT_REPOSITORY };
