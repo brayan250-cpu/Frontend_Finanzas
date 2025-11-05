@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Client } from '../../domain/models/client';
 import { ClientRepository } from '../../application/ports/client.repository';
@@ -10,16 +11,18 @@ export class ClientHttpRepository implements ClientRepository {
   private base = `${environment.apiUrl}/clients`;
 
   async findAll(): Promise<Client[]> {
-    const raw = await this.http.get<any[]>(this.base).toPromise();
+    const raw = await firstValueFrom(this.http.get<any[]>(this.base));
     return (raw ?? []).map(this.toDomain);
   }
+
   async findById(id: string): Promise<Client | null> {
-    const r = await this.http.get<any>(`${this.base}/${id}`).toPromise();
+    const r = await firstValueFrom(this.http.get<any>(`${this.base}/${id}`));
     return r ? this.toDomain(r) : null;
   }
+
   async create(payload: Omit<Client,'id'|'createdAt'>): Promise<Client> {
     const body = this.fromDomain(payload as any);
-    const r = await this.http.post<any>(this.base, body).toPromise();
+    const r = await firstValueFrom(this.http.post<any>(this.base, body));
     return this.toDomain(r!);
   }
 
