@@ -1,5 +1,4 @@
-import { Component, effect, inject, signal } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { Component, inject, signal } from '@angular/core';
 import { GetAllClientsUseCase } from '../../../application/use-cases/get-all-clients.usecase';
 import { TableComponent } from '../../../shared/components/table/table.component';
 import { Client } from '../../../domain/models/client';
@@ -7,7 +6,7 @@ import { Client } from '../../../domain/models/client';
 @Component({
   standalone: true,
   selector: 'app-clients-page',
-  imports: [NgIf, TableComponent],
+  imports: [TableComponent],
   template: `
     <section class="page">
       <h1>Clientes</h1>
@@ -20,7 +19,10 @@ export class ClientsPageComponent {
   clients = signal<Client[]>([]);
   columns = ['fullName','document','email','createdAt'];
 
-  constructor() {
-    effect(async () => this.clients.set(await this.getAll.execute()));
+  constructor() { this.load(); }
+
+  private async load() {
+    const data = await this.getAll.execute();
+    this.clients.set(data);
   }
 }
