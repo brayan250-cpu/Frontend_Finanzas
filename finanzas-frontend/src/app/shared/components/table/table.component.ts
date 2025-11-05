@@ -1,3 +1,4 @@
+// cspell:ignore usecase titlecase
 import { Component, Input } from '@angular/core';
 import { NgFor, TitleCasePipe } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';

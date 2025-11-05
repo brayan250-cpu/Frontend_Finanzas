@@ -1,3 +1,4 @@
+// cspell:ignore usecase titlecase
 import { Component, inject, signal } from '@angular/core';
 import { GetAllClientsUseCase } from '../../../application/use-cases/get-all-clients.usecase';
 import { TableComponent } from '../../../shared/components/table/table.component';
@@ -9,8 +10,8 @@ import { Client } from '../../../domain/models/client';
   imports: [TableComponent],
   template: `
     <section class="page">
-      <h1>Clientes</h1>
-      <app-table [columns]="columns" [data]="clients()"></app-table>
+    <h1>Clientes</h1>
+    <app-table [columns]="columns" [data]="clients()"></app-table>
     </section>
   `,
 })
