@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { NgFor } from '@angular/common';
+import { NgFor, TitleCasePipe } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 
 @Component({
   standalone: true,
   selector: 'app-table',
-  imports: [MatTableModule, NgFor],
+  imports: [MatTableModule, NgFor, TitleCasePipe],
   template: `
   <table mat-table [dataSource]="data">
     <ng-container *ngFor="let col of columns" [matColumnDef]="col">
