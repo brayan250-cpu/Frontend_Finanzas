@@ -1,4 +1,4 @@
-import { Client } from '../../domain/models/client';
+import { Client } from '../../domain/client';
 
 export interface ClientRepository {
   findAll(): Promise<Client[]>;

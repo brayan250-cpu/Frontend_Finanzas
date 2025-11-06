@@ -1,4 +1,4 @@
-import { CreditApplication } from '../../domain/models/credit-application';
+import { CreditApplication } from '../../domain/credit-application';
 
 export interface CreditApplicationRepository {
   findAll(): Promise<CreditApplication[]>;
