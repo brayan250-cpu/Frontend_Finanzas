@@ -7,4 +7,18 @@ export interface Client {
   document: DocumentNumber;
   email?: string;
   createdAt: Date;
+  realStateCompanyId: number;
+}
+
+export interface CreateClientDto {
+  fullName: string;
+  document: string;
+  email?: string;
+  realStateCompanyId: number;
+}
+
+export interface UpdateClientDto {
+  fullName?: string;
+  document?: string;
+  email?: string;
 }

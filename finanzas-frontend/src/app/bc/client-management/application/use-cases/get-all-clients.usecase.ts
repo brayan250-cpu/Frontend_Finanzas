@@ -1,4 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { Client } from '../../domain/client';
 import { ClientRepository } from '../ports/client.repository';
 import { CLIENT_REPOSITORY } from '../client-management.tokens';
@@ -6,11 +8,12 @@ import { CLIENT_REPOSITORY } from '../client-management.tokens';
 @Injectable({ providedIn: 'root' })
 export class GetAllClientsUseCase {
   private readonly repo = inject<ClientRepository>(CLIENT_REPOSITORY);
-  loading = signal(false);
+  readonly loading = signal(false);
 
-  async execute(): Promise<Client[]> {
+  execute(realStateCompanyId: number): Observable<Client[]> {
     this.loading.set(true);
-    try { return await this.repo.findAll(); }
-    finally { this.loading.set(false); }
+    return this.repo
+      .listByRealStateCompany(realStateCompanyId)
+      .pipe(finalize(() => this.loading.set(false)));
   }
 }
