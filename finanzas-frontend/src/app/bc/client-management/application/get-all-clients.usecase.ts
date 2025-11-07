@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { CLIENT_REPOSITORY } from '../../../application/tokens';
-import { Client } from '../../domain/client';
-import { ClientRepository } from '../ports/client.repository';
+import { Client } from '../domain/client';
+import { ClientRepository } from './client.repository';
 
 @Injectable({ providedIn: 'root' })
 export class GetAllClientsUseCase {

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
-import { GetAllClientsUseCase } from '../../application/use-cases/get-all-clients.usecase';
+import { GetAllClientsUseCase } from '../../application/get-all-clients.usecase';
 import { Client } from '../../domain/client';
 
 @Component({

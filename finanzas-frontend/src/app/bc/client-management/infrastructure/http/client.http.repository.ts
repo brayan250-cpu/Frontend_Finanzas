@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
-import { environment } from '../../../../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 import { Client } from '../../domain/client';
-import { ClientRepository } from '../../application/ports/client.repository';
+import { ClientRepository } from '../../application/client.repository';
 
 interface ClientDto {
   id: number;
@@ -14,7 +14,7 @@ interface ClientDto {
   realStateCompanyId: number;
 }
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class ClientHttpRepository implements ClientRepository {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = `${environment.apiUrl}/clients`;
