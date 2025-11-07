@@ -1,0 +1,3 @@
+package com.acme.finanzasbackend.iam.domain.model.commands;
+
+public record SignInCommand(String username, String password) { }
