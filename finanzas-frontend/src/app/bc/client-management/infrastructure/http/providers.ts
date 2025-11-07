@@ -1,7 +1,8 @@
 import { Provider } from '@angular/core';
+import { CLIENT_REPOSITORY } from '../../../../application/tokens';
 import { ClientHttpRepository } from './client.http.repository';
-import { CLIENT_REPOSITORY } from '../../application/client-management.tokens';
 
-export const INFRASTRUCTURE_PROVIDERS: Provider[] = [
+export const CLIENT_MANAGEMENT_PROVIDERS: Provider[] = [
+  ClientHttpRepository,
   { provide: CLIENT_REPOSITORY, useExisting: ClientHttpRepository },
 ];
